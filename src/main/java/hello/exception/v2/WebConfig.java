@@ -1,16 +1,27 @@
 package hello.exception.v2;
 
+import hello.exception.handlerExceptionResolver.MyHandlerExceptionResolver;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
+import java.util.List;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+    @Override
+    //configureHandlerExceptionResolvers 가아니라 extendHandlerExceptionResolvers을 사용하는이유
+    //전자를 사용하면 스프링이 기본으로 제공하는 ExceptionResolver 가 제거됨(주의)
+    //왜 스프링이 제공하는 ExceptionResolver가 없어지면안되는거지?
+    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver>
+                                                        resolvers) {
+        resolvers.add(new MyHandlerExceptionResolver());
+    }
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LogInterceptor())
