@@ -1,6 +1,7 @@
 package hello.exception.v2;
 
 import hello.exception.handlerExceptionResolver.MyHandlerExceptionResolver;
+import hello.exception.handlerExceptionResolver.UserHandlerExceptionResolver;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver>
                                                         resolvers) {
         resolvers.add(new MyHandlerExceptionResolver());
+        resolvers.add(new UserHandlerExceptionResolver());
     }
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
