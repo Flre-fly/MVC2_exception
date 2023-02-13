@@ -19,6 +19,7 @@ public class LogFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest)request;
         log.info("{}: {}",httpRequest.getRequestURL(), httpRequest.getDispatcherType());
         chain.doFilter(request, response);
+        log.info("응답에 대한 dofilter호출");
     }
 
     @Override

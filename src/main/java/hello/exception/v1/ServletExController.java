@@ -22,4 +22,8 @@ public class ServletExController {
     public void error500(HttpServletResponse response) throws IOException {
         response.sendError(500);
     }
+    @GetMapping("/no-error")
+    public String noError() {
+        return "index";
+    }
 }

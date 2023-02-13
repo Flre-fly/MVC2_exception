@@ -14,8 +14,7 @@ public class LogInterceptor implements HandlerInterceptor {
         String requestURI = request.getRequestURI();
         String uuid = UUID.randomUUID().toString();
         request.setAttribute(LOG_ID, uuid);
-        log.info("REQUEST [{}][{}][{}][{}]", uuid,
-                request.getDispatcherType(), requestURI, handler);
+        log.info("REQUEST [{}][{}][{}][{}]", uuid, request.getDispatcherType(), requestURI, handler);
         return true;
     }
     @Override
